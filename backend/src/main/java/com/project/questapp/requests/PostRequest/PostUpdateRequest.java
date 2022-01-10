@@ -1,4 +1,4 @@
-package com.project.questapp.requests;
+package com.project.questapp.requests.PostRequest;
 
 import lombok.Data;
 

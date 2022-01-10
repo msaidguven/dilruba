@@ -3,22 +3,22 @@ package com.project.questapp.services;
 import com.project.questapp.entities.Post;
 import com.project.questapp.entities.User;
 import com.project.questapp.repository.PostRepository;
-import com.project.questapp.requests.PostCreateRequest;
-import com.project.questapp.requests.PostUpdateRequest;
+import com.project.questapp.requests.PostRequest.PostCreateRequest;
+import com.project.questapp.requests.PostRequest.PostUpdateRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PostServices {
+public class PostService {
     private PostRepository postRepository;
-    private UserServices userServices;
+    private UserService userService;
 
 
-    public PostServices(PostRepository postRepository, UserServices userServices) {
+    public PostService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
-        this.userServices = userServices;
+        this.userService = userService;
     }
 
     public List<Post> getAllPost(Optional<Long> userId){
@@ -30,7 +30,7 @@ public class PostServices {
     }
 
     public Post createOnePostById(PostCreateRequest newPostRequest){
-        User user = userServices.getOneUserById(newPostRequest.getUserId());
+        User user = userService.getOneUserById(newPostRequest.getUserId());
         if(user == null)
             return null;
         Post toSave = new Post();

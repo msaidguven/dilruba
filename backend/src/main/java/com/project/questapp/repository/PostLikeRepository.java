@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.project.questapp.entities.PostLike;
 
-public interface LikeRepository extends JpaRepository<PostLike, Long> {
+public interface PostLikeRepository extends JpaRepository<PostLike, Long> {
 
 	List<PostLike> findByUserIdAndPostId(Long userId, Long postId);
 

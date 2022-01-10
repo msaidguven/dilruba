@@ -28,5 +28,5 @@ public class Comment {
 
     @Lob
     @Column(columnDefinition = "text")
-    String text;
+    String commentContent;
 }
