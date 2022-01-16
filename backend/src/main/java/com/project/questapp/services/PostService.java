@@ -1,5 +1,6 @@
 package com.project.questapp.services;
 
+import com.project.questapp.entities.Menu;
 import com.project.questapp.entities.Post;
 import com.project.questapp.entities.User;
 import com.project.questapp.repository.PostRepository;
@@ -14,11 +15,13 @@ import java.util.Optional;
 public class PostService {
     private PostRepository postRepository;
     private UserService userService;
+    private MenuService menuService;
 
 
-    public PostService(PostRepository postRepository, UserService userService) {
+    public PostService(PostRepository postRepository, UserService userService, MenuService menuService) {
         this.postRepository = postRepository;
         this.userService = userService;
+        this.menuService = menuService;
     }
 
     public List<Post> getAllPost(Optional<Long> userId){
@@ -31,11 +34,16 @@ public class PostService {
 
     public Post createOnePostById(PostCreateRequest newPostRequest){
         User user = userService.getOneUserById(newPostRequest.getUserId());
-        if(user == null)
+        Menu menu = menuService.getOneMenuById(newPostRequest.getDersId());
+        if(user == null || menu == null)
             return null;
         Post toSave = new Post();
         toSave.setId(newPostRequest.getId());
         toSave.setPostContent(newPostRequest.getPostContent());
+        toSave.setKonuId(newPostRequest.getKonuId());
+        toSave.setProperty(newPostRequest.getProperty());
+        toSave.setDCevap(newPostRequest.getDCevap());
+        toSave.setMenu(menu);
         toSave.setUser(user);
         return postRepository.save(toSave);
     }

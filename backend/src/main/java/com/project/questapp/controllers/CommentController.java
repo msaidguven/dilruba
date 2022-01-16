@@ -1,7 +1,6 @@
 package com.project.questapp.controllers;
 
 import com.project.questapp.entities.Comment;
-import com.project.questapp.entities.Post;
 import com.project.questapp.requests.CommentRequest.CommentCreateRequest;
 import com.project.questapp.requests.CommentRequest.CommentUpdateRequest;
 import com.project.questapp.services.CommentService;

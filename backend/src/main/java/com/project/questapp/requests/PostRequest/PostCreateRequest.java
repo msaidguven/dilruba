@@ -5,8 +5,14 @@ import lombok.Data;
 @Data
 public class PostCreateRequest {
 
-    Long Id;
+    Long id;
     String postContent;
     Long userId;
+    Long dersId;
+    Long konuId;
+
+    String dCevap;
+    String postImg;
+    String property;
 
 }
