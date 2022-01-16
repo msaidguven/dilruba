@@ -8,19 +8,48 @@ import org.hibernate.annotations.OnDeleteAction;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
 @Data
 public class Post {
     @Id
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "post_author", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     User user;
+
+    String postUnic;
+    String postImg;
+    String property;
+    Long cikmisSoru;
+    Character dCevap;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ders_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    Menu menu;
+
+    Long konuId;
+
+    Date postTarih;
+
+    int begeniSayisi;
+    int yorumSayisi;
+    int postCount;
+    int dogruCount;
+    int yanlisCount;
+    int countCevapOnay;
+    int yayin;
+
+
+
+
 
     @Lob
     @Column(columnDefinition = "text")
